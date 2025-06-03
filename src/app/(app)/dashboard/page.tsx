@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; // Added useRouter
 
 export default function DashboardPage() {
   const { toast } = useToast();
+  const router = useRouter(); // Initialized router
 
   const handleExportReport = () => {
     toast({
@@ -21,11 +23,7 @@ export default function DashboardPage() {
   };
 
   const handleScanProduct = () => {
-    toast({
-      title: "Scan Product",
-      description: "QR code scanning feature coming soon!",
-    });
-    // In a real app, you would navigate to a scanning page or open a modal.
+    router.push("/traceability"); // Changed to navigate
   };
 
 
