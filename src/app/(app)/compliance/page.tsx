@@ -1,9 +1,36 @@
+
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CompliancePage() {
+  const { toast } = useToast();
+
+  const handleViewChecklists = () => {
+    toast({
+      title: "View Checklists",
+      description: "Navigating to digital audit checklists. (Feature coming soon)",
+    });
+  };
+
+  const handleAccessForms = () => {
+    toast({
+      title: "Access Forms",
+      description: "Loading regulatory forms and inspection reminders. (Feature coming soon)",
+    });
+  };
+
+  const handleGenerateReports = () => {
+    toast({
+      title: "Generate Reports",
+      description: "Report generation initiated. (Feature coming soon)",
+    });
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold tracking-tight font-headline text-foreground">Compliance Management</h1>
@@ -22,7 +49,7 @@ export default function CompliancePage() {
             <Image src="https://placehold.co/400x200.png" alt="Audit checklist" width={400} height={200} className="rounded-md" data-ai-hint="checklist form" />
           </CardContent>
           <CardContent>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">View Checklists</Button>
+            <Button onClick={handleViewChecklists} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">View Checklists</Button>
           </CardContent>
         </Card>
 
@@ -36,7 +63,7 @@ export default function CompliancePage() {
             <Image src="https://placehold.co/400x200.png" alt="Regulatory forms" width={400} height={200} className="rounded-md" data-ai-hint="document stack" />
           </CardContent>
           <CardContent>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Access Forms</Button>
+            <Button onClick={handleAccessForms} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Access Forms</Button>
           </CardContent>
         </Card>
 
@@ -50,7 +77,7 @@ export default function CompliancePage() {
             <Image src="https://placehold.co/400x200.png" alt="Export reports" width={400} height={200} className="rounded-md" data-ai-hint="file export" />
           </CardContent>
           <CardContent>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Generate Reports</Button>
+            <Button onClick={handleGenerateReports} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Generate Reports</Button>
           </CardContent>
         </Card>
       </div>
