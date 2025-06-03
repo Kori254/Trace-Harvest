@@ -6,15 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function CompliancePage() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleViewChecklists = () => {
-    toast({
-      title: "View Checklists",
-      description: "Navigating to digital audit checklists. (Feature coming soon)",
-    });
+    router.push('/compliance/checklists');
   };
 
   const handleAccessForms = () => {
