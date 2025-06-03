@@ -1,8 +1,11 @@
+
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
-import Link from "next/link";
+import { useToast } from "@/hooks/use-toast"; // Added useToast import
 
 const educationalResources = [
   {
@@ -11,7 +14,7 @@ const educationalResources = [
     description: "Learn the basics of implementing food safety practices during farming.",
     icon: Icons.video,
     imageHint: "farm safety video",
-    link: "#",
+    link: "#", // Link kept for potential future use but not directly used by button now
   },
   {
     type: "infographic",
@@ -41,6 +44,15 @@ const educationalResources = [
 
 
 export default function EducationPage() {
+  const { toast } = useToast(); // Initialized useToast
+
+  const handleResourceClick = (resourceTitle: string) => {
+    toast({
+      title: "Resource Coming Soon",
+      description: `Details for "${resourceTitle}" will be available soon.`,
+    });
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold tracking-tight font-headline text-foreground">Educational Resources</h1>
@@ -60,7 +72,7 @@ export default function EducationPage() {
             </CardHeader>
             <CardContent className="flex-grow">
                <Image 
-                src={`https://placehold.co/400x200.png?text=${resource.type}`} 
+                src={`https://placehold.co/400x200.png`} 
                 alt={resource.title} 
                 width={400} 
                 height={200} 
@@ -69,10 +81,11 @@ export default function EducationPage() {
               />
             </CardContent>
             <CardContent>
-              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-                <Link href={resource.link}>
-                  {resource.type === "video" ? "Watch Video" : "View Resource"}
-                </Link>
+              <Button 
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                onClick={() => handleResourceClick(resource.title)} // Added onClick handler
+              >
+                {resource.type === "video" ? "Watch Video" : "View Resource"}
               </Button>
             </CardContent>
           </Card>
