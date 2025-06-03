@@ -16,13 +16,16 @@ export default function CreateBatchPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // In a real app, you would handle form submission, API calls, etc.
+    // In a real app, you would handle form submission, API calls, and actual data persistence.
+    // For now, we simulate success and redirect.
+    const formData = new FormData(event.currentTarget);
+    const batchId = formData.get('batchId') as string;
+    
     toast({
-      title: "Batch Creation Initiated",
-      description: "Batch creation functionality is being implemented. This is a placeholder.",
+      title: "Batch Created (Simulated)",
+      description: `Batch "${batchId || 'New Batch'}" has been successfully created.`,
     });
-    // Potentially redirect after "successful" submission or clear form
-    // router.push('/farm-management/batches'); 
+    router.push('/farm-management/batches'); 
   };
 
   return (
@@ -46,23 +49,23 @@ export default function CreateBatchPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="batchId" className="font-semibold">Batch ID*</Label>
-              <Input id="batchId" placeholder="e.g., CORN2024-001" className="mt-1 bg-background" required />
+              <Input name="batchId" id="batchId" placeholder="e.g., CORN2024-001" className="mt-1 bg-background" required />
             </div>
             <div>
               <Label htmlFor="cropType" className="font-semibold">Crop Type*</Label>
-              <Input id="cropType" placeholder="e.g., Corn, Tomatoes, Wheat" className="mt-1 bg-background" required />
+              <Input name="cropType" id="cropType" placeholder="e.g., Corn, Tomatoes, Wheat" className="mt-1 bg-background" required />
             </div>
             <div>
               <Label htmlFor="plantingDate" className="font-semibold">Planting Date*</Label>
-              <Input id="plantingDate" type="date" className="mt-1 bg-background" required />
+              <Input name="plantingDate" id="plantingDate" type="date" className="mt-1 bg-background" required />
             </div>
             <div>
               <Label htmlFor="location" className="font-semibold">Location / Field*</Label>
-              <Input id="location" placeholder="e.g., North Field, Greenhouse A" className="mt-1 bg-background" required />
+              <Input name="location" id="location" placeholder="e.g., North Field, Greenhouse A" className="mt-1 bg-background" required />
             </div>
             <div>
               <Label htmlFor="notes" className="font-semibold">Notes (Optional)</Label>
-              <Textarea id="notes" placeholder="Any additional notes about this batch..." className="mt-1 bg-background min-h-[100px]" />
+              <Textarea name="notes" id="notes" placeholder="Any additional notes about this batch..." className="mt-1 bg-background min-h-[100px]" />
             </div>
             <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <Icons.package className="mr-2 h-4 w-4" />
