@@ -1,12 +1,16 @@
 
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ProfilePage() {
+  const { toast } = useToast();
   // Mock user data - replace with actual data fetching in a real app
   const user = {
     name: "Demo User",
@@ -16,11 +20,40 @@ export default function ProfilePage() {
     bio: "Passionate about sustainable agriculture and leveraging technology to improve farm efficiency. Member since 2023.",
   };
 
+  const handleEditProfile = () => {
+    toast({
+      title: "Edit Profile",
+      description: "This feature is coming soon!",
+    });
+  };
+
+  const handleChangePassword = () => {
+    toast({
+      title: "Change Password",
+      description: "This feature is coming soon!",
+    });
+  };
+
+  const handleNotificationPreferences = () => {
+    toast({
+      title: "Notification Preferences",
+      description: "This feature is coming soon!",
+    });
+  };
+
+  const handleDeleteAccount = () => {
+    toast({
+      title: "Delete Account",
+      description: "Account deletion feature is coming soon. This is a critical action.",
+      variant: "destructive",
+    });
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         <h1 className="text-3xl font-bold tracking-tight font-headline text-foreground">User Profile</h1>
-        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+        <Button onClick={handleEditProfile} className="bg-primary hover:bg-primary/90 text-primary-foreground">
           <Icons.settings className="mr-2 h-4 w-4" />
           Edit Profile
         </Button>
@@ -57,13 +90,13 @@ export default function ProfilePage() {
                 <CardDescription>Manage your account preferences.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-                <Button variant="outline" className="w-full justify-start">
+                <Button variant="outline" className="w-full justify-start" onClick={handleChangePassword}>
                     <Icons.user className="mr-2 h-4 w-4" /> Change Password
                 </Button>
-                <Button variant="outline" className="w-full justify-start">
+                <Button variant="outline" className="w-full justify-start" onClick={handleNotificationPreferences}>
                     <Icons.notifications className="mr-2 h-4 w-4" /> Notification Preferences
                 </Button>
-                 <Button variant="destructive" className="w-full justify-start">
+                 <Button variant="destructive" className="w-full justify-start" onClick={handleDeleteAccount}>
                     <Icons.logout className="mr-2 h-4 w-4" /> Delete Account
                 </Button>
             </CardContent>
