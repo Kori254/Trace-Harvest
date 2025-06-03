@@ -1,9 +1,36 @@
+
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
+import { useToast } from "@/hooks/use-toast"; // Added import
 
 export default function FarmManagementPage() {
+  const { toast } = useToast(); // Added useToast hook
+
+  const handleManageBatches = () => {
+    toast({
+      title: "Manage Batches",
+      description: "This feature is coming soon! You'll be able to create and track your farm batches here.",
+    });
+  };
+
+  const handleLogApplications = () => {
+    toast({
+      title: "Log Chemical Applications",
+      description: "This feature is coming soon! You'll be able to log pesticide and fertilizer applications here.",
+    });
+  };
+
+  const handleSyncData = () => {
+    toast({
+      title: "Sync Sensor Data",
+      description: "This feature is coming soon! You'll be able to sync or manually add IoT sensor data here.",
+    });
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold tracking-tight font-headline text-foreground">Farm Management</h1>
@@ -22,7 +49,7 @@ export default function FarmManagementPage() {
             <Image src="https://placehold.co/400x200.png" alt="Batch tracking" width={400} height={200} className="rounded-md" data-ai-hint="farm field" />
           </CardContent>
           <CardContent>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Manage Batches</Button>
+            <Button onClick={handleManageBatches} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Manage Batches</Button>
           </CardContent>
         </Card>
 
@@ -36,7 +63,7 @@ export default function FarmManagementPage() {
             <Image src="https://placehold.co/400x200.png" alt="Chemical logging" width={400} height={200} className="rounded-md" data-ai-hint="fertilizer spray" />
           </CardContent>
           <CardContent>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Log Applications</Button>
+            <Button onClick={handleLogApplications} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Log Applications</Button>
           </CardContent>
         </Card>
 
@@ -50,7 +77,7 @@ export default function FarmManagementPage() {
             <Image src="https://placehold.co/400x200.png" alt="Sensor data" width={400} height={200} className="rounded-md" data-ai-hint="iot sensor" />
           </CardContent>
           <CardContent>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Sync Data</Button>
+            <Button onClick={handleSyncData} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Sync Data</Button>
           </CardContent>
         </Card>
       </div>
