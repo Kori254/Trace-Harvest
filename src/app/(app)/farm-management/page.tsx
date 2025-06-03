@@ -5,16 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
-import { useToast } from "@/hooks/use-toast"; // Added import
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation"; // Added import
 
 export default function FarmManagementPage() {
-  const { toast } = useToast(); // Added useToast hook
+  const { toast } = useToast();
+  const router = useRouter(); // Added useRouter hook
 
   const handleManageBatches = () => {
-    toast({
-      title: "Manage Batches",
-      description: "This feature is coming soon! You'll be able to create and track your farm batches here.",
-    });
+    router.push('/farm-management/batches'); // Navigate to the new batches page
   };
 
   const handleLogApplications = () => {
