@@ -7,7 +7,7 @@ import { Icons } from "@/components/icons";
 import { useRouter } from "next/navigation";
 import type { Batch } from "@/types";
 import { format } from "date-fns";
-import { useToast } from "@/hooks/use-toast";
+// Removed useToast as it's no longer directly used for view details.
 
 const mockBatches: Batch[] = [
   {
@@ -18,6 +18,7 @@ const mockBatches: Batch[] = [
     status: "growing",
     chemicalsUsed: [{ name: "Fertilizer X", date: new Date("2024-04-01"), quantity: "10kg/ha" }],
     iotSensorData: [{ sensorId: "TEMP01", timestamp: new Date(), type: "temperature", value: 25 }],
+    notes: "Initial planting successful. Regular watering schedule in place."
   },
   {
     id: "BATCH002",
@@ -26,6 +27,7 @@ const mockBatches: Batch[] = [
     harvestDate: new Date("2024-07-15"),
     location: "Greenhouse A",
     status: "harvested",
+    notes: "Excellent yield this season. Ready for market."
   },
   {
     id: "BATCH003",
@@ -33,6 +35,11 @@ const mockBatches: Batch[] = [
     plantingDate: new Date("2023-10-20"),
     location: "West Acre",
     status: "processing",
+    chemicalsUsed: [
+        { name: "Pesticide Y", date: new Date("2023-11-15"), quantity: "5L/ha" },
+        { name: "Growth Promoter Z", date: new Date("2024-01-10"), quantity: "2kg/ha" }
+    ],
+    notes: "Currently undergoing cleaning and sorting."
   },
   {
     id: "BATCH004",
@@ -40,23 +47,23 @@ const mockBatches: Batch[] = [
     plantingDate: new Date("2024-05-01"),
     location: "South Plot",
     status: "in-transit",
+    iotSensorData: [
+        { sensorId: "HUMID02", timestamp: new Date(), type: "humidity", value: 65 },
+        { sensorId: "SOILM01", timestamp: new Date(), type: "soilMoisture", value: 0.4 }
+    ],
+    notes: "Shipped to distribution center. Tracking available."
   },
 ];
 
 export default function ManageBatchesPage() {
   const router = useRouter();
-  const { toast } = useToast();
 
   const handleCreateNewBatch = () => {
     router.push('/farm-management/batches/create');
   };
 
   const handleViewBatchDetails = (batchId: string) => {
-    toast({
-      title: "View Batch Details",
-      description: `Viewing details for batch ${batchId} is coming soon!`,
-    });
-    // Future: router.push(`/farm-management/batches/${batchId}`);
+    router.push(`/farm-management/batches/${batchId}`);
   };
 
   const getStatusColorClasses = (status: Batch['status']) => {
@@ -158,3 +165,6 @@ export default function ManageBatchesPage() {
     </div>
   );
 }
+
+// Export mockBatches so it can be used by the detail page
+export { mockBatches };

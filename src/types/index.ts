@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from 'lucide-react';
 
 export interface NavItem {
@@ -37,4 +38,6 @@ export interface Batch {
   chemicalsUsed?: Array<{ name: string; date: Date; quantity: string }>;
   iotSensorData?: Array<{ sensorId: string; timestamp: Date; type: 'temperature' | 'humidity' | 'soilMoisture'; value: number }>;
   status: 'growing' | 'harvested' | 'processing' | 'in-transit' | 'retail' | 'sold';
+  notes?: string; // Added notes field
 }
+
