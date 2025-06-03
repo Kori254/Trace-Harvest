@@ -48,11 +48,7 @@ export default function ManageBatchesPage() {
   const { toast } = useToast();
 
   const handleCreateNewBatch = () => {
-    toast({
-      title: "Create New Batch",
-      description: "This functionality (form or modal to create a batch) is coming soon!",
-    });
-    // Future: router.push('/farm-management/batches/create'); or open a dialog
+    router.push('/farm-management/batches/create');
   };
 
   const handleViewBatchDetails = (batchId: string) => {
