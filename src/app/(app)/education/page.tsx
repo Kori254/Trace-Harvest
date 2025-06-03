@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
-import { useToast } from "@/hooks/use-toast"; // Added useToast import
+import { useToast } from "@/hooks/use-toast"; 
 
 const educationalResources = [
   {
@@ -14,13 +14,13 @@ const educationalResources = [
     description: "Learn the basics of implementing food safety practices during farming.",
     icon: Icons.video,
     imageHint: "farm safety video",
-    link: "#", // Link kept for potential future use but not directly used by button now
+    link: "#", 
   },
   {
     type: "infographic",
     title: "5 Key Steps to Hygienic Harvesting",
     description: "A visual guide to ensuring hygiene during the harvesting process.",
-    icon: Icons.checklist, // Using checklist as a proxy for infographic for now
+    icon: Icons.checklist, 
     imageHint: "hygiene infographic",
     link: "#",
   },
@@ -44,13 +44,20 @@ const educationalResources = [
 
 
 export default function EducationPage() {
-  const { toast } = useToast(); // Initialized useToast
+  const { toast } = useToast(); 
 
-  const handleResourceClick = (resourceTitle: string) => {
-    toast({
-      title: "Resource Coming Soon",
-      description: `Details for "${resourceTitle}" will be available soon.`,
-    });
+  const handleResourceClick = (resourceTitle: string, resourceType: string) => {
+    if (resourceType === "video") {
+      toast({
+        title: "Video Coming Soon",
+        description: `The video "${resourceTitle}" will be available shortly.`,
+      });
+    } else {
+      toast({
+        title: "Resource Coming Soon",
+        description: `Details for "${resourceTitle}" will be available soon.`,
+      });
+    }
   };
 
   return (
@@ -83,7 +90,7 @@ export default function EducationPage() {
             <CardContent>
               <Button 
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                onClick={() => handleResourceClick(resource.title)} // Added onClick handler
+                onClick={() => handleResourceClick(resource.title, resource.type)} 
               >
                 {resource.type === "video" ? "Watch Video" : "View Resource"}
               </Button>
