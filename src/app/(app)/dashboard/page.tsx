@@ -1,21 +1,44 @@
+
+"use client";
+
 import { MetricCard } from "@/components/dashboard/metric-card";
 import { PlaceholderChart } from "@/components/dashboard/placeholder-chart";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
 
 export default function DashboardPage() {
+  const { toast } = useToast();
+
+  const handleExportReport = () => {
+    toast({
+      title: "Report Generation Started",
+      description: "Your report is being generated and will be available shortly.",
+    });
+    // In a real app, you would trigger the actual report generation logic here.
+  };
+
+  const handleScanProduct = () => {
+    toast({
+      title: "Scan Product",
+      description: "QR code scanning feature coming soon!",
+    });
+    // In a real app, you would navigate to a scanning page or open a modal.
+  };
+
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
         <h1 className="text-3xl font-bold tracking-tight font-headline text-foreground">Dashboard</h1>
         <div className="flex items-center space-x-2">
-          <Button variant="outline">
+          <Button variant="outline" onClick={handleExportReport}>
             <Icons.download className="mr-2 h-4 w-4" />
             Export Report
           </Button>
-          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
+          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground" onClick={handleScanProduct}>
             <Icons.qrCode className="mr-2 h-4 w-4" />
             Scan Product
           </Button>
