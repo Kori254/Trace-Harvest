@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
+// Removed useToast as it's no longer directly used for starting a checklist
 import Image from "next/image";
 
-const checklists = [
+export const checklists = [
   {
     id: "pre-harvest",
     title: "Pre-Harvest Safety Checklist",
@@ -37,13 +37,9 @@ const checklists = [
 
 export default function ChecklistsPage() {
   const router = useRouter();
-  const { toast } = useToast();
 
-  const handleStartChecklist = (checklistTitle: string) => {
-    toast({
-      title: `Start ${checklistTitle}`,
-      description: "This checklist will be interactive soon. For now, this is a placeholder action.",
-    });
+  const handleStartChecklist = (checklistId: string) => {
+    router.push(`/compliance/checklists/${checklistId}`);
   };
 
   return (
@@ -78,8 +74,8 @@ export default function ChecklistsPage() {
               />
             </CardContent>
             <CardContent>
-              <Button 
-                onClick={() => handleStartChecklist(checklist.title)} 
+              <Button
+                onClick={() => handleStartChecklist(checklist.id)}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 Start Checklist
