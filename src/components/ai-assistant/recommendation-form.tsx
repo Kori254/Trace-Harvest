@@ -99,7 +99,7 @@ export function RecommendationForm() {
                 {isLoading ? (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
-                  <Icons.bot className="mr-2 h-4 w-4" />
+                  <Icons.aiAssistant className="mr-2 h-4 w-4" />
                 )}
                 Get Recommendations
               </Button>
