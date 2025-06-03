@@ -1,7 +1,8 @@
+
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Sidebar,
   SidebarHeader,
@@ -13,10 +14,11 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+// Button component is not directly used for logout anymore, SidebarMenuButton is.
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useSidebar } from "@/components/ui/sidebar"; // Ensure this import is correct
+// Avatar components are not used in this file.
+import { useSidebar } from "@/components/ui/sidebar"; 
+import { useToast } from "@/hooks/use-toast";
 
 const navItems = [
   { href: "/dashboard", icon: Icons.dashboard, label: "Dashboard", tooltip: "Dashboard" },
@@ -30,6 +32,16 @@ const navItems = [
 export function AppSidebar() {
   const pathname = usePathname();
   const { state: sidebarState } = useSidebar();
+  const { toast } = useToast();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out.",
+    });
+    router.push("/signin");
+  };
 
   return (
     <Sidebar collapsible="icon" variant="sidebar" side="left">
@@ -67,10 +79,10 @@ export function AppSidebar() {
             Settings
           </SidebarMenuButton>
         </Link>
-        <Button variant="ghost" className="justify-start w-full">
-           <Icons.logout className="h-5 w-5 mr-2" />
-           {sidebarState === 'expanded' ? 'Logout' : ''}
-        </Button>
+        <SidebarMenuButton className="justify-start" onClick={handleLogout}>
+           <Icons.logout className="h-5 w-5" />
+           Logout
+        </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
   );
