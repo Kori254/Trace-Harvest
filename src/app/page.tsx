@@ -13,10 +13,10 @@ export default function HomePage() {
         </Link>
         <nav className="space-x-2">
           <Button variant="ghost" asChild>
-            <Link href="/auth/signin">Sign In</Link>
+            <Link href="/signin">Sign In</Link>
           </Button>
           <Button variant="default" asChild>
-            <Link href="/auth/signup">Sign Up</Link>
+            <Link href="/signup">Sign Up</Link>
           </Button>
         </nav>
       </header>
@@ -34,7 +34,7 @@ export default function HomePage() {
               <Link href="/dashboard">Explore Features</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/auth/signup">Get Started</Link>
+              <Link href="/signup">Get Started</Link>
             </Button>
           </div>
         </div>
