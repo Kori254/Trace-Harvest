@@ -8,24 +8,38 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Added useRouter
+import { useRouter } from "next/navigation"; 
 
 export default function DashboardPage() {
   const { toast } = useToast();
-  const router = useRouter(); // Initialized router
+  const router = useRouter(); 
 
   const handleExportReport = () => {
     toast({
       title: "Report Generation Started",
       description: "Your report is being generated and will be available shortly.",
     });
-    // In a real app, you would trigger the actual report generation logic here.
   };
 
   const handleScanProduct = () => {
-    router.push("/traceability"); // Changed to navigate
+    router.push("/traceability"); 
   };
 
+  const handleCreateNewBatch = () => {
+    router.push("/farm-management");
+  };
+
+  const handleLogChemicalUse = () => {
+    router.push("/farm-management");
+  };
+
+  const handleSyncSensorData = () => {
+    router.push("/farm-management");
+  };
+
+  const handleStartNewAudit = () => {
+    router.push("/compliance");
+  };
 
   return (
     <div className="space-y-6">
@@ -116,16 +130,16 @@ export default function DashboardPage() {
             <CardTitle className="font-headline text-card-foreground">Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button className="w-full justify-start bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button className="w-full justify-start bg-primary hover:bg-primary/90 text-primary-foreground" onClick={handleCreateNewBatch}>
               <Icons.package className="mr-2 h-4 w-4" /> Create New Batch
             </Button>
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start" onClick={handleLogChemicalUse}>
               <Icons.pesticide className="mr-2 h-4 w-4" /> Log Chemical Use
             </Button>
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start" onClick={handleSyncSensorData}>
               <Icons.temperature className="mr-2 h-4 w-4" /> Sync Sensor Data
             </Button>
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start" onClick={handleStartNewAudit}>
               <Icons.audit className="mr-2 h-4 w-4" /> Start New Audit
             </Button>
           </CardContent>
