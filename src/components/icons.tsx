@@ -54,6 +54,7 @@ export const Icons = {
   settings: Settings,
   logout: LogOut,
   chevronDown: ChevronDown,
+  leaf: Leaf, // Added missing leaf icon
   qrCode: QrCode,
   lineChart: LineChart,
   temperature: Thermometer,
