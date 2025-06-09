@@ -79,7 +79,7 @@ export function ConsumerDashboard() {
           </CardHeader>
           <CardContent className="space-y-3">
             <Button variant="outline" className="w-full justify-start" onClick={() => handleViewResource('education')}>
-              <Icons.bookOpen className="mr-2 h-4 w-4" /> Food Safety Guides
+              <Icons.education className="mr-2 h-4 w-4" /> Food Safety Guides
             </Button>
             <Button variant="outline" className="w-full justify-start" onClick={() => handleViewResource('featured farms')}>
               <Icons.farmManagement className="mr-2 h-4 w-4" /> Featured Farms & Producers
